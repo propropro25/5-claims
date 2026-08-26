@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Addressing the Five Claims</title>
+
+<style>
+:root {
+  --ink:#090909;
+  --muted:#6e6e73;
+  --line:#dedede;
+  --soft:#f5f5f7;
+}
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  color:var(--ink);
+  background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+button,
+a {
+  font:inherit;
+}
+
+.top {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.topin,
+main {
+  max-width:920px;
+  margin:auto;
+  padding-left:22px;
+  padding-right:22px;
+}
+
+.topin {
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand {
+  font-weight:750;
+  text-decoration:none;
+  color:inherit;
+}
+
+.home {
+  color:var(--muted);
+  text-decoration:none;
+}
+
+.hero {
+  padding:74px 0 40px;
+}
+
+.eyebrow {
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+h1 {
+  max-width:790px;
+  margin:16px 0 22px;
+  font-size:clamp(42px,8vw,76px);
+  line-height:.96;
+  letter-spacing:-.055em;
+}
+
+.lead {
+  max-width:760px;
+  font-size:clamp(18px,3vw,23px);
+  line-height:1.45;
+  color:var(--muted);
+}
+
+.notice {
+  margin-top:28px;
+  padding:5px 0 5px 18px;
+  border-left:3px solid var(--ink);
+  line-height:1.55;
+}
+
+.progress {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+  margin:32px 0;
+}
+
+.progress button {
+  height:7px;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:#ddd;
+  cursor:pointer;
+  font-size:0;
+}
+
+.progress button.on {
+  background:#111;
+}
+
+.claim {
+  padding:52px 0;
+  border-top:1px solid var(--line);
+  scroll-margin-top:95px;
+}
+
+.num {
+  font-size:13px;
+  font-weight:800;
+  color:var(--muted);
+}
+
+h2 {
+  margin:10px 0 24px;
+  font-size:clamp(30px,5vw,48px);
+  letter-spacing:-.04em;
+  line-height:1.05;
+}
+
+.party {
+  margin-bottom:18px;
+  padding:24px;
+  border-radius:20px;
+  background:var(--soft);
+  font-size:20px;
+  line-height:1.45;
+}
+
+details {
+  margin:12px 0;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+
+summary {
+  position:relative;
+  padding:21px 52px 21px 21px;
+  font-weight:750;
+  cursor:pointer;
+  list-style:none;
+}
+
+summary::-webkit-details-marker {
+  display:none;
+}
+
+summary::after {
+  content:"+";
+  position:absolute;
+  top:14px;
+  right:21px;
+  font-size:24px;
+}
+
+details[open] summary::after {
+  content:"–";
+}
+
+.answer {
+  padding:0 21px 22px;
+  color:#292929;
+  line-height:1.65;
+}
+
+.answer p:first-child {
+  margin-top:0;
+}
+
+.answer strong {
+  color:#000;
+}
+
+.test {
+  margin-top:14px;
+  padding:22px;
+  border-radius:18px;
+  background:#0a0a0a;
+  color:#fff;
+}
+
+.test small {
+  display:block;
+  margin-bottom:9px;
+  color:#aaa;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.test p {
+  margin:0;
+  line-height:1.55;
+}
+
+.sources {
+  padding:45px 0 80px;
+  border-top:1px solid var(--line);
+}
+
+.sources a {
+  color:inherit;
+}
+
+.sources li {
+  margin:12px 0;
+  line-height:1.45;
+}
+
+footer {
+  padding:24px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  text-align:center;
+}
+
+@media (max-width:600px) {
+  .hero {
+    padding-top:48px;
+  }
+
+  .claim {
+    padding:42px 0;
+  }
+
+  .party {
+    padding:20px;
+    font-size:18px;
+  }
+
+  .home {
+    font-size:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+  <div class="topin">
+    <a class="brand" href="#">Five Claims</a>
+    <a class="home" href="https://propropro25.github.io/homebase/">
+      Research Library ↗
+    </a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">Interactive argument</div>
+
+  <h1>Addressing the Five Claims</h1>
+
+  <p class="lead">
+    Five familiar vaccine arguments, separated into what they establish,
+    what they assume, and what evidence would be needed to answer the
+    harder question.
+  </p>
+
+  <div class="notice">
+    <strong>This is an audit of reasoning—not a substitute for medical advice.</strong>
+    A slogan can contain a true fact and still be too broad to settle an
+    individual product, schedule, population, or outcome.
+  </div>
+</section>
+
+<nav class="progress" aria-label="Jump to claim">
+  <button class="on" data-go="c1" aria-label="Claim 1">1</button>
+  <button data-go="c2" aria-label="Claim 2">2</button>
+  <button data-go="c3" aria-label="Claim 3">3</button>
+  <button data-go="c4" aria-label="Claim 4">4</button>
+  <button data-go="c5" aria-label="Claim 5">5</button>
+</nav>
+
+<article class="claim" id="c1">
+  <div class="num">CLAIM 01 / 05</div>
+
+  <h2>“Vaccines prevent disease and save millions of lives.”</h2>
+
+  <div class="party">
+    Vaccination reduces serious illness, disability, and death; therefore
+    vaccination policy is justified.
+  </div>
+
+  <details open>
+    <summary>What the claim establishes</summary>
+
+    <div class="answer">
+      <p>
+        Some vaccines reduce specified outcomes in specified populations.
+        That is a real empirical claim and can be tested product by product.
+      </p>
+
+      <p>
+        But <strong>“vaccines” is a category, not one intervention.</strong>
+        Evidence for one product, disease, endpoint, age group, or era cannot
+        automatically establish the net effect of every product or the entire
+        schedule.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The logic gap</summary>
+
+    <div class="answer">
+      <p>
+        Benefit is not the same question as net benefit. A complete comparison
+        needs absolute—not only relative—risk reduction, duration, number of
+        doses, baseline disease risk, known adverse effects, uncertainty, and
+        relevant alternatives.
+      </p>
+
+      <p>
+        “Millions saved” is normally a modeled counterfactual: observed
+        outcomes are compared with an estimated world in which vaccination
+        did not occur. Models can be informative, but their answers inherit
+        their assumptions and should not be presented as directly counted
+        facts.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How the claim can protect itself</summary>
+
+    <div class="answer">
+      <p>
+        A framework becomes self-sealing when every result is interpreted as
+        confirmation: health means the product worked; infection means it
+        reduced severity; severe infection means nonresponse or waning; and
+        an event after vaccination is called coincidental unless a recognized
+        mechanism or statistical signal is already available.
+      </p>
+
+      <p>
+        Those explanations may sometimes be correct. The logical problem
+        appears when <strong>no possible observation is allowed to count
+        against the claim.</strong>
+      </p>
+    </div>
+  </details>
+
+  <div class="test">
+    <small>What would actually test it</small>
+
+    <p>
+      Define the product, population, comparator, outcomes, follow-up period,
+      absolute benefits, absolute harms, uncertainty, and rules for changing
+      the conclusion—before examining the result.
+    </p>
+  </div>
+</article>
+
+<article class="claim" id="c2">
+  <div class="num">CLAIM 02 / 05</div>
+
+  <h2>“Vaccination protects the community through herd immunity.”</h2>
+
+  <div class="party">
+    When enough people are vaccinated, transmission falls and vulnerable
+    people are protected.
+  </div>
+
+  <details>
+    <summary>What the claim establishes</summary>
+
+    <div class="answer">
+      <p>
+        Population immunity can reduce transmission when an intervention
+        prevents infection or onward transmission sufficiently, for long
+        enough, under the actual circulating conditions.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The logic gap</summary>
+
+    <div class="answer">
+      <p>
+        The threshold is not a moral constant. It depends on transmissibility,
+        contact patterns, susceptibility, vaccine effectiveness against
+        infection, waning, variants, prior infection, and population
+        structure.
+      </p>
+
+      <p>
+        A product that mainly reduces severe disease may benefit recipients
+        without producing the same transmission effect. Therefore “protect
+        others” must be demonstrated for the particular product and time—not
+        borrowed from a textbook model.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How the claim can protect itself</summary>
+
+    <div class="answer">
+      <p>
+        If the promised threshold fails, the explanation can always move:
+        uptake was insufficient, immunity waned, a variant escaped, or the
+        remaining unvaccinated group caused the outbreak.
+      </p>
+
+      <p>
+        Any of those explanations may be true. But a threshold that changes
+        after every result is not a falsifiable promise.
+      </p>
+    </div>
+  </details>
+
+  <div class="test">
+    <small>What would actually test it</small>
+
+    <p>
+      Publish infection and transmission endpoints, duration of effect,
+      assumptions behind the threshold, sensitivity ranges, and the
+      conditions under which the community-protection claim no longer holds.
+    </p>
+  </div>
+</article>
+
+<article class="claim" id="c3">
+  <div class="num">CLAIM 03 / 05</div>
+
+  <h2>“Smallpox eradication proves vaccination works.”</h2>
+
+  <div class="party">
+    Smallpox was eradicated through a global vaccination campaign; declining
+    vaccination permits disease to return.
+  </div>
+
+  <details>
+    <summary>What history supports</summary>
+
+    <div class="answer">
+      <p>
+        Smallpox vaccination was a key tool. The World Health Organization
+        also describes the endgame as a combination of immunization,
+        surveillance, case finding, isolation, and targeted containment.
+      </p>
+
+      <p>
+        The last naturally transmitted case was recorded in 1977, and
+        eradication was declared in 1980.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The logic gap</summary>
+
+    <div class="answer">
+      <p>
+        A historic success supports a specific conclusion: vaccination plus
+        an intensive eradication strategy eliminated a virus with unusually
+        favorable biological features.
+      </p>
+
+      <p>
+        It does not prove that every vaccine has identical effectiveness,
+        duration, safety, transmission effects, or suitability for every
+        person. Using the strongest member of a category to close debate about
+        every member is <strong>category substitution.</strong>
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The missing context</summary>
+
+    <div class="answer">
+      <p>
+        Variolation, Jennerian vaccination, later vaccinia products, mass
+        campaigns, and ring vaccination are not interchangeable.
+      </p>
+
+      <p>
+        The historical record also includes serious vaccine complications—one
+        reason routine smallpox vaccination ended after eradication. A
+        truthful success story can hold both facts at once.
+      </p>
+    </div>
+  </details>
+
+  <div class="test">
+    <small>What would actually test the analogy</small>
+
+    <p>
+      Compare pathogen biology, product performance, transmission effect,
+      duration, adverse effects, surveillance capacity, and eradication
+      feasibility before applying the smallpox lesson elsewhere.
+    </p>
+  </div>
+</article>
+
+<article class="claim" id="c4">
+  <div class="num">CLAIM 04 / 05</div>
+
+  <h2>“Vaccines are rigorously tested and continuously monitored.”</h2>
+
+  <div class="party">
+    Trials, regulators, and post-market systems establish that vaccine
+    benefits far outweigh their risks.
+  </div>
+
+  <details>
+    <summary>What the claim establishes</summary>
+
+    <div class="answer">
+      <p>
+        Vaccines undergo premarket studies, and multiple post-market systems
+        can detect and investigate safety signals.
+      </p>
+
+      <p>
+        Passive reports, active linked-data studies, clinical assessment, and
+        product-specific research serve different purposes.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The logic gap</summary>
+
+    <div class="answer">
+      <p>
+        A monitoring system can be valuable without being capable of answering
+        every question. The FDA states that VAERS is a signal-detection
+        system; its reports generally cannot establish causation or incidence.
+      </p>
+
+      <p>
+        Premarket trials may be too small or short to detect very rare,
+        delayed, subgroup-specific, or cumulative outcomes.
+      </p>
+
+      <p>
+        The honest conclusion is not “monitoring proves no harm.” It is:
+        <strong>the system can estimate some risks well, detect some signals,
+        and leave other questions uncertain.</strong>
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The ethical evidence loop</summary>
+
+    <div class="answer">
+      <p>
+        A circular argument occurs when a stronger comparison is rejected as
+        unethical because benefit is presumed, and the absence of that
+        comparison is later offered as reassurance.
+      </p>
+
+      <p>
+        Ethical constraints are real, but they do not transform missing
+        evidence into proof.
+      </p>
+
+      <p>
+        Likewise, “no accepted mechanism” cannot by itself rule out an
+        association when the relevant mechanism or outcome has not been
+        adequately studied. You cannot rule out what a system was never
+        designed to measure.
+      </p>
+    </div>
+  </details>
+
+  <div class="test">
+    <small>What would actually test it</small>
+
+    <p>
+      Show trial comparators and follow-up; prespecified outcomes; attrition;
+      statistical power for rare events; active-surveillance results;
+      subgroup analyses; conflicts; raw methods; and how safety signals
+      changed labels, recommendations, or research.
+    </p>
+  </div>
+</article>
+
+<article class="claim" id="c5">
+  <div class="num">CLAIM 05 / 05</div>
+
+  <h2>“The benefits outweigh the risks—and vaccination saves money.”</h2>
+
+  <div class="party">
+    Vaccination prevents costly outbreaks, hospitalizations, lost work, and
+    school absences, making it among public health’s most cost-effective
+    tools.
+  </div>
+
+  <details>
+    <summary>What the claim establishes</summary>
+
+    <div class="answer">
+      <p>
+        Preventing disease can create large health and economic benefits.
+        Cost-effectiveness analysis can help compare interventions when its
+        inputs and perspective are transparent.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The logic gap</summary>
+
+    <div class="answer">
+      <p>
+        “Benefits outweigh risks” is not a free-standing fact. For whom,
+        compared with what, over what period, at what disease prevalence, and
+        using which outcomes?
+      </p>
+
+      <p>
+        A population-average result can conceal very different benefit-risk
+        balances across age, sex, health status, prior immunity, or exposure
+        risk.
+      </p>
+
+      <p>
+        Cost-effectiveness also depends on what is counted. Avoided medical
+        costs and productivity may be included while uncertain adverse
+        outcomes, caregiver burdens, or distributional effects are excluded.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How the conclusion can be preloaded</summary>
+
+    <div class="answer">
+      <p>
+        If benefits are modeled broadly and harms are limited to already
+        confirmed causal categories, uncertainty is treated asymmetrically:
+        possible benefits enter the calculation while possible harms remain
+        outside the ledger until conclusively proven.
+      </p>
+
+      <p>
+        A fair analysis applies comparable evidentiary standards to both sides
+        and displays how the answer changes when assumptions change.
+      </p>
+    </div>
+  </details>
+
+  <div class="test">
+    <small>What would actually test it</small>
+
+    <p>
+      Publish absolute outcomes by subgroup, time horizon, and comparator;
+      list included and excluded costs; show uncertainty intervals; run
+      sensitivity analyses; and state the risk level at which the
+      recommendation changes.
+    </p>
+  </div>
+</article>
+
+<section class="sources">
+  <div class="eyebrow">Primary references and methods</div>
+
+  <ul>
+    <li>
+      <a href="https://www.who.int/health-topics/smallpox"
+         target="_blank" rel="noopener">
+        WHO — Smallpox history and eradication strategy
+      </a>
+    </li>
+
+    <li>
+      <a href="https://www.who.int/news-room/questions-and-answers/item/smallpox"
+         target="_blank" rel="noopener">
+        WHO — Smallpox vaccine benefits and serious complications
+      </a>
+    </li>
+
+    <li>
+      <a href="https://www.fda.gov/vaccines-blood-biologics/vaccine-adverse-events/vaers-overview"
+         target="_blank" rel="noopener">
+        FDA — What VAERS can and cannot establish
+      </a>
+    </li>
+
+    <li>
+      <a href="https://www.fda.gov/vaccines-blood-biologics/vaccine-adverse-events/vaccine-adverse-event-reporting-system-vaers-database-information"
+         target="_blank" rel="noopener">
+        FDA — VAERS database strengths and limitations
+      </a>
+    </li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  Question claims precisely. Test conclusions symmetrically.
+</footer>
+
+<script>
+const buttons = [...document.querySelectorAll(".progress button")];
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const section = document.getElementById(button.dataset.go);
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    buttons.forEach(button => {
+      button.classList.toggle(
+        "on",
+        button.dataset.go === entry.target.id
+      );
+    });
+  });
+}, {
+  rootMargin:"-30% 0px -60%"
+});
+
+document.querySelectorAll(".claim").forEach(claim => {
+  observer.observe(claim);
+});
+</script>
+
+</body>
+</html>
