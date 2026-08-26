@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta
+  name="description"
+  content="Examine five common vaccine claims, their assumptions, evidence and unanswered questions."
+>
 <title>Addressing the Five Claims</title>
 
 <style>
@@ -11,17 +15,25 @@
   --muted:#6e6e73;
   --line:#dedede;
   --soft:#f5f5f7;
+  --page:#fff;
+  --evidence:#f1f6ff;
+  --evidence-line:#8eb5ff;
 }
 
-* { box-sizing:border-box; }
+* {
+  box-sizing:border-box;
+}
 
-html { scroll-behavior:smooth; }
+html {
+  scroll-behavior:smooth;
+}
 
 body {
   margin:0;
+  background:var(--page);
   color:var(--ink);
-  background:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
 
 button,
@@ -29,229 +41,351 @@ a {
   font:inherit;
 }
 
-.top {
+a {
+  color:inherit;
+}
+
+.site-header {
   position:sticky;
   top:0;
-  z-index:10;
-  background:rgba(255,255,255,.9);
+  z-index:20;
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.91);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
 }
 
-.topin,
+.header-inner,
 main {
-  max-width:920px;
+  width:min(920px,calc(100% - 44px));
   margin:auto;
-  padding-left:22px;
-  padding-right:22px;
 }
 
-.topin {
-  height:68px;
+.header-inner {
+  min-height:68px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:18px;
 }
 
 .brand {
-  font-weight:750;
+  font-weight:800;
   text-decoration:none;
-  color:inherit;
 }
 
-.home {
+.home-link {
   color:var(--muted);
   text-decoration:none;
+  white-space:nowrap;
 }
 
 .hero {
-  padding:74px 0 40px;
+  padding:72px 0 42px;
 }
 
 .eyebrow {
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.15em;
+  text-transform:uppercase;
 }
 
 h1 {
-  max-width:790px;
-  margin:16px 0 22px;
-  font-size:clamp(42px,8vw,76px);
-  line-height:.96;
-  letter-spacing:-.055em;
+  max-width:830px;
+  margin:15px 0 23px;
+  font-size:clamp(46px,8vw,78px);
+  line-height:.94;
+  letter-spacing:-.06em;
 }
 
 .lead {
-  max-width:760px;
-  font-size:clamp(18px,3vw,23px);
-  line-height:1.45;
+  max-width:790px;
+  margin:0;
   color:var(--muted);
+  font-size:clamp(19px,3vw,24px);
+  line-height:1.48;
 }
 
-.notice {
-  margin-top:28px;
-  padding:5px 0 5px 18px;
-  border-left:3px solid var(--ink);
-  line-height:1.55;
-}
-
-.progress {
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:6px;
-  margin:32px 0;
-}
-
-.progress button {
-  height:7px;
-  padding:0;
-  border:0;
-  border-radius:999px;
-  background:#ddd;
-  cursor:pointer;
-  font-size:0;
-}
-
-.progress button.on {
-  background:#111;
-}
-
-.claim {
-  padding:52px 0;
-  border-top:1px solid var(--line);
-  scroll-margin-top:95px;
-}
-
-.num {
-  font-size:13px;
-  font-weight:800;
-  color:var(--muted);
-}
-
-h2 {
-  margin:10px 0 24px;
-  font-size:clamp(30px,5vw,48px);
-  letter-spacing:-.04em;
-  line-height:1.05;
-}
-
-.party {
-  margin-bottom:18px;
-  padding:24px;
-  border-radius:20px;
+.preservation-note {
+  margin-top:30px;
+  padding:20px 22px;
+  border-left:3px solid #000;
   background:var(--soft);
-  font-size:20px;
-  line-height:1.45;
+  line-height:1.6;
 }
 
-details {
-  margin:12px 0;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:18px;
+.claim-navigation {
+  position:sticky;
+  top:68px;
+  z-index:15;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  scrollbar-width:none;
 }
 
-summary {
-  position:relative;
-  padding:21px 52px 21px 21px;
-  font-weight:750;
-  cursor:pointer;
-  list-style:none;
-}
-
-summary::-webkit-details-marker {
+.claim-navigation::-webkit-scrollbar {
   display:none;
 }
 
-summary::after {
-  content:"+";
-  position:absolute;
-  top:14px;
-  right:21px;
-  font-size:24px;
+.claim-navigation button {
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:#fff;
+  color:var(--muted);
+  font-weight:800;
+  cursor:pointer;
 }
 
-details[open] summary::after {
-  content:"–";
-}
-
-.answer {
-  padding:0 21px 22px;
-  color:#292929;
-  line-height:1.65;
-}
-
-.answer p:first-child {
-  margin-top:0;
-}
-
-.answer strong {
-  color:#000;
-}
-
-.test {
-  margin-top:14px;
-  padding:22px;
-  border-radius:18px;
-  background:#0a0a0a;
+.claim-navigation button.active {
+  border-color:#000;
+  background:#000;
   color:#fff;
 }
 
-.test small {
-  display:block;
-  margin-bottom:9px;
-  color:#aaa;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+.claim-navigation button:focus-visible,
+.claim-summary:focus-visible,
+.expand-button:focus-visible {
+  outline:3px solid #8eb5ff;
+  outline-offset:3px;
 }
 
-.test p {
-  margin:0;
-  line-height:1.55;
-}
-
-.sources {
-  padding:45px 0 80px;
-  border-top:1px solid var(--line);
-}
-
-.sources a {
-  color:inherit;
-}
-
-.sources li {
-  margin:12px 0;
-  line-height:1.45;
-}
-
-footer {
-  padding:24px;
-  border-top:1px solid var(--line);
+.loading {
+  padding:80px 0;
   color:var(--muted);
   text-align:center;
 }
 
+.claim {
+  padding:56px 0;
+  border-top:1px solid var(--line);
+  scroll-margin-top:140px;
+}
+
+.claim:first-child {
+  border-top:0;
+}
+
+.claim-number {
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.claim-title {
+  margin:12px 0 25px;
+  font-size:clamp(33px,5.6vw,52px);
+  line-height:1.04;
+  letter-spacing:-.045em;
+}
+
+.party-line {
+  margin-bottom:16px;
+  padding:23px;
+  border-radius:20px;
+  background:#090909;
+  color:#fff;
+  font-size:20px;
+  line-height:1.5;
+}
+
+.party-line-label {
+  display:block;
+  margin-bottom:9px;
+  color:#999;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.claim-sections {
+  display:grid;
+  gap:12px;
+}
+
+.claim-section {
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+}
+
+.claim-section.evidence {
+  border-color:var(--evidence-line);
+  background:var(--evidence);
+}
+
+.claim-summary {
+  position:relative;
+  width:100%;
+  min-height:66px;
+  padding:20px 56px 20px 21px;
+  border:0;
+  background:transparent;
+  color:var(--ink);
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+}
+
+.claim-summary::after {
+  content:"+";
+  position:absolute;
+  top:12px;
+  right:19px;
+  color:var(--muted);
+  font-size:31px;
+  font-weight:400;
+}
+
+.claim-section.open .claim-summary::after {
+  content:"–";
+}
+
+.section-label {
+  display:block;
+  margin-bottom:5px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.claim-content {
+  display:none;
+  padding:0 21px 23px;
+}
+
+.claim-section.open .claim-content {
+  display:block;
+}
+
+.claim-content p {
+  margin:0 0 17px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  line-height:1.72;
+}
+
+.claim-content p:last-child {
+  margin-bottom:0;
+}
+
+.claim-content ul,
+.claim-content ol {
+  margin:0 0 18px;
+  padding-left:25px;
+}
+
+.claim-content li {
+  margin:10px 0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  line-height:1.65;
+}
+
+.claim-content a {
+  overflow-wrap:anywhere;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+
+.source-list {
+  display:grid;
+  gap:10px;
+  margin-top:20px;
+}
+
+.source-link {
+  display:block;
+  padding:15px 17px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:14px;
+  text-decoration:none;
+}
+
+.source-link:hover {
+  border-color:#999;
+}
+
+.expand-row {
+  display:flex;
+  justify-content:flex-end;
+  padding-top:20px;
+}
+
+.expand-button {
+  padding:12px 17px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  font-weight:750;
+  cursor:pointer;
+}
+
+.empty {
+  margin:50px 0;
+  padding:25px;
+  border:1px solid #e0aaaa;
+  border-radius:16px;
+  background:#fff4f4;
+  line-height:1.55;
+}
+
+footer {
+  padding:30px 22px 50px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  text-align:center;
+  font-size:14px;
+}
+
 @media (max-width:600px) {
+  .header-inner,
+  main {
+    width:min(100% - 30px,920px);
+  }
+
+  .home-link {
+    font-size:13px;
+  }
+
   .hero {
-    padding-top:48px;
+    padding:45px 0 32px;
+  }
+
+  .claim-navigation {
+    top:68px;
   }
 
   .claim {
-    padding:42px 0;
+    padding:43px 0;
   }
 
-  .party {
+  .party-line {
     padding:20px;
     font-size:18px;
   }
 
-  .home {
-    font-size:14px;
+  .claim-content p,
+  .claim-content li {
+    font-size:17px;
   }
 }
 </style>
@@ -259,10 +393,14 @@ footer {
 
 <body>
 
-<header class="top">
-  <div class="topin">
+<header class="site-header">
+  <div class="header-inner">
     <a class="brand" href="#">Five Claims</a>
-    <a class="home" href="https://propropro25.github.io/homebase/">
+
+    <a
+      class="home-link"
+      href="https://propropro25.github.io/homebase/"
+    >
       Research Library ↗
     </a>
   </div>
@@ -276,484 +414,405 @@ footer {
   <h1>Addressing the Five Claims</h1>
 
   <p class="lead">
-    Five familiar vaccine arguments, separated into what they establish,
-    what they assume, and what evidence would be needed to answer the
-    harder question.
+    Examine five familiar claims by separating the public argument,
+    the assumptions beneath it, the questions it leaves unanswered
+    and the evidence needed to test it.
   </p>
 
-  <div class="notice">
-    <strong>This is an audit of reasoning—not a substitute for medical advice.</strong>
-    A slogan can contain a true fact and still be too broad to settle an
-    individual product, schedule, population, or outcome.
+  <div class="preservation-note">
+    <strong>How this page is organized:</strong> the author’s complete
+    argument is preserved as submitted. Additional context, sourcing,
+    or factual distinctions appear in separately labeled
+    <strong>Evidence check</strong> sections rather than silently
+    changing the original argument.
   </div>
 </section>
 
-<nav class="progress" aria-label="Jump to claim">
-  <button class="on" data-go="c1" aria-label="Claim 1">1</button>
-  <button data-go="c2" aria-label="Claim 2">2</button>
-  <button data-go="c3" aria-label="Claim 3">3</button>
-  <button data-go="c4" aria-label="Claim 4">4</button>
-  <button data-go="c5" aria-label="Claim 5">5</button>
-</nav>
-
-<article class="claim" id="c1">
-  <div class="num">CLAIM 01 / 05</div>
-
-  <h2>“Vaccines prevent disease and save millions of lives.”</h2>
-
-  <div class="party">
-    Vaccination reduces serious illness, disability, and death; therefore
-    vaccination policy is justified.
-  </div>
-
-  <details open>
-    <summary>What the claim establishes</summary>
-
-    <div class="answer">
-      <p>
-        Some vaccines reduce specified outcomes in specified populations.
-        That is a real empirical claim and can be tested product by product.
-      </p>
-
-      <p>
-        But <strong>“vaccines” is a category, not one intervention.</strong>
-        Evidence for one product, disease, endpoint, age group, or era cannot
-        automatically establish the net effect of every product or the entire
-        schedule.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The logic gap</summary>
-
-    <div class="answer">
-      <p>
-        Benefit is not the same question as net benefit. A complete comparison
-        needs absolute—not only relative—risk reduction, duration, number of
-        doses, baseline disease risk, known adverse effects, uncertainty, and
-        relevant alternatives.
-      </p>
-
-      <p>
-        “Millions saved” is normally a modeled counterfactual: observed
-        outcomes are compared with an estimated world in which vaccination
-        did not occur. Models can be informative, but their answers inherit
-        their assumptions and should not be presented as directly counted
-        facts.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>How the claim can protect itself</summary>
-
-    <div class="answer">
-      <p>
-        A framework becomes self-sealing when every result is interpreted as
-        confirmation: health means the product worked; infection means it
-        reduced severity; severe infection means nonresponse or waning; and
-        an event after vaccination is called coincidental unless a recognized
-        mechanism or statistical signal is already available.
-      </p>
-
-      <p>
-        Those explanations may sometimes be correct. The logical problem
-        appears when <strong>no possible observation is allowed to count
-        against the claim.</strong>
-      </p>
-    </div>
-  </details>
-
-  <div class="test">
-    <small>What would actually test it</small>
-
-    <p>
-      Define the product, population, comparator, outcomes, follow-up period,
-      absolute benefits, absolute harms, uncertainty, and rules for changing
-      the conclusion—before examining the result.
-    </p>
-  </div>
-</article>
-
-<article class="claim" id="c2">
-  <div class="num">CLAIM 02 / 05</div>
-
-  <h2>“Vaccination protects the community through herd immunity.”</h2>
-
-  <div class="party">
-    When enough people are vaccinated, transmission falls and vulnerable
-    people are protected.
-  </div>
-
-  <details>
-    <summary>What the claim establishes</summary>
-
-    <div class="answer">
-      <p>
-        Population immunity can reduce transmission when an intervention
-        prevents infection or onward transmission sufficiently, for long
-        enough, under the actual circulating conditions.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The logic gap</summary>
-
-    <div class="answer">
-      <p>
-        The threshold is not a moral constant. It depends on transmissibility,
-        contact patterns, susceptibility, vaccine effectiveness against
-        infection, waning, variants, prior infection, and population
-        structure.
-      </p>
-
-      <p>
-        A product that mainly reduces severe disease may benefit recipients
-        without producing the same transmission effect. Therefore “protect
-        others” must be demonstrated for the particular product and time—not
-        borrowed from a textbook model.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>How the claim can protect itself</summary>
-
-    <div class="answer">
-      <p>
-        If the promised threshold fails, the explanation can always move:
-        uptake was insufficient, immunity waned, a variant escaped, or the
-        remaining unvaccinated group caused the outbreak.
-      </p>
-
-      <p>
-        Any of those explanations may be true. But a threshold that changes
-        after every result is not a falsifiable promise.
-      </p>
-    </div>
-  </details>
-
-  <div class="test">
-    <small>What would actually test it</small>
-
-    <p>
-      Publish infection and transmission endpoints, duration of effect,
-      assumptions behind the threshold, sensitivity ranges, and the
-      conditions under which the community-protection claim no longer holds.
-    </p>
-  </div>
-</article>
-
-<article class="claim" id="c3">
-  <div class="num">CLAIM 03 / 05</div>
-
-  <h2>“Smallpox eradication proves vaccination works.”</h2>
-
-  <div class="party">
-    Smallpox was eradicated through a global vaccination campaign; declining
-    vaccination permits disease to return.
-  </div>
-
-  <details>
-    <summary>What history supports</summary>
-
-    <div class="answer">
-      <p>
-        Smallpox vaccination was a key tool. The World Health Organization
-        also describes the endgame as a combination of immunization,
-        surveillance, case finding, isolation, and targeted containment.
-      </p>
-
-      <p>
-        The last naturally transmitted case was recorded in 1977, and
-        eradication was declared in 1980.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The logic gap</summary>
-
-    <div class="answer">
-      <p>
-        A historic success supports a specific conclusion: vaccination plus
-        an intensive eradication strategy eliminated a virus with unusually
-        favorable biological features.
-      </p>
-
-      <p>
-        It does not prove that every vaccine has identical effectiveness,
-        duration, safety, transmission effects, or suitability for every
-        person. Using the strongest member of a category to close debate about
-        every member is <strong>category substitution.</strong>
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The missing context</summary>
-
-    <div class="answer">
-      <p>
-        Variolation, Jennerian vaccination, later vaccinia products, mass
-        campaigns, and ring vaccination are not interchangeable.
-      </p>
-
-      <p>
-        The historical record also includes serious vaccine complications—one
-        reason routine smallpox vaccination ended after eradication. A
-        truthful success story can hold both facts at once.
-      </p>
-    </div>
-  </details>
-
-  <div class="test">
-    <small>What would actually test the analogy</small>
-
-    <p>
-      Compare pathogen biology, product performance, transmission effect,
-      duration, adverse effects, surveillance capacity, and eradication
-      feasibility before applying the smallpox lesson elsewhere.
-    </p>
-  </div>
-</article>
-
-<article class="claim" id="c4">
-  <div class="num">CLAIM 04 / 05</div>
-
-  <h2>“Vaccines are rigorously tested and continuously monitored.”</h2>
-
-  <div class="party">
-    Trials, regulators, and post-market systems establish that vaccine
-    benefits far outweigh their risks.
-  </div>
-
-  <details>
-    <summary>What the claim establishes</summary>
-
-    <div class="answer">
-      <p>
-        Vaccines undergo premarket studies, and multiple post-market systems
-        can detect and investigate safety signals.
-      </p>
-
-      <p>
-        Passive reports, active linked-data studies, clinical assessment, and
-        product-specific research serve different purposes.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The logic gap</summary>
-
-    <div class="answer">
-      <p>
-        A monitoring system can be valuable without being capable of answering
-        every question. The FDA states that VAERS is a signal-detection
-        system; its reports generally cannot establish causation or incidence.
-      </p>
-
-      <p>
-        Premarket trials may be too small or short to detect very rare,
-        delayed, subgroup-specific, or cumulative outcomes.
-      </p>
-
-      <p>
-        The honest conclusion is not “monitoring proves no harm.” It is:
-        <strong>the system can estimate some risks well, detect some signals,
-        and leave other questions uncertain.</strong>
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The ethical evidence loop</summary>
-
-    <div class="answer">
-      <p>
-        A circular argument occurs when a stronger comparison is rejected as
-        unethical because benefit is presumed, and the absence of that
-        comparison is later offered as reassurance.
-      </p>
-
-      <p>
-        Ethical constraints are real, but they do not transform missing
-        evidence into proof.
-      </p>
-
-      <p>
-        Likewise, “no accepted mechanism” cannot by itself rule out an
-        association when the relevant mechanism or outcome has not been
-        adequately studied. You cannot rule out what a system was never
-        designed to measure.
-      </p>
-    </div>
-  </details>
-
-  <div class="test">
-    <small>What would actually test it</small>
-
-    <p>
-      Show trial comparators and follow-up; prespecified outcomes; attrition;
-      statistical power for rare events; active-surveillance results;
-      subgroup analyses; conflicts; raw methods; and how safety signals
-      changed labels, recommendations, or research.
-    </p>
-  </div>
-</article>
-
-<article class="claim" id="c5">
-  <div class="num">CLAIM 05 / 05</div>
-
-  <h2>“The benefits outweigh the risks—and vaccination saves money.”</h2>
-
-  <div class="party">
-    Vaccination prevents costly outbreaks, hospitalizations, lost work, and
-    school absences, making it among public health’s most cost-effective
-    tools.
-  </div>
-
-  <details>
-    <summary>What the claim establishes</summary>
-
-    <div class="answer">
-      <p>
-        Preventing disease can create large health and economic benefits.
-        Cost-effectiveness analysis can help compare interventions when its
-        inputs and perspective are transparent.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>The logic gap</summary>
-
-    <div class="answer">
-      <p>
-        “Benefits outweigh risks” is not a free-standing fact. For whom,
-        compared with what, over what period, at what disease prevalence, and
-        using which outcomes?
-      </p>
-
-      <p>
-        A population-average result can conceal very different benefit-risk
-        balances across age, sex, health status, prior immunity, or exposure
-        risk.
-      </p>
-
-      <p>
-        Cost-effectiveness also depends on what is counted. Avoided medical
-        costs and productivity may be included while uncertain adverse
-        outcomes, caregiver burdens, or distributional effects are excluded.
-      </p>
-    </div>
-  </details>
-
-  <details>
-    <summary>How the conclusion can be preloaded</summary>
-
-    <div class="answer">
-      <p>
-        If benefits are modeled broadly and harms are limited to already
-        confirmed causal categories, uncertainty is treated asymmetrically:
-        possible benefits enter the calculation while possible harms remain
-        outside the ledger until conclusively proven.
-      </p>
-
-      <p>
-        A fair analysis applies comparable evidentiary standards to both sides
-        and displays how the answer changes when assumptions change.
-      </p>
-    </div>
-  </details>
-
-  <div class="test">
-    <small>What would actually test it</small>
-
-    <p>
-      Publish absolute outcomes by subgroup, time horizon, and comparator;
-      list included and excluded costs; show uncertainty intervals; run
-      sensitivity analyses; and state the risk level at which the
-      recommendation changes.
-    </p>
-  </div>
-</article>
-
-<section class="sources">
-  <div class="eyebrow">Primary references and methods</div>
-
-  <ul>
-    <li>
-      <a href="https://www.who.int/health-topics/smallpox"
-         target="_blank" rel="noopener">
-        WHO — Smallpox history and eradication strategy
-      </a>
-    </li>
-
-    <li>
-      <a href="https://www.who.int/news-room/questions-and-answers/item/smallpox"
-         target="_blank" rel="noopener">
-        WHO — Smallpox vaccine benefits and serious complications
-      </a>
-    </li>
-
-    <li>
-      <a href="https://www.fda.gov/vaccines-blood-biologics/vaccine-adverse-events/vaers-overview"
-         target="_blank" rel="noopener">
-        FDA — What VAERS can and cannot establish
-      </a>
-    </li>
-
-    <li>
-      <a href="https://www.fda.gov/vaccines-blood-biologics/vaccine-adverse-events/vaccine-adverse-event-reporting-system-vaers-database-information"
-         target="_blank" rel="noopener">
-        FDA — VAERS database strengths and limitations
-      </a>
-    </li>
-  </ul>
-</section>
+<nav
+  class="claim-navigation"
+  id="claimNavigation"
+  aria-label="Jump between the five claims"
+></nav>
+
+<div id="claims">
+  <div class="loading">Loading the five claims…</div>
+</div>
 
 </main>
 
 <footer>
-  Question claims precisely. Test conclusions symmetrically.
+  Read the argument. Inspect the evidence. Reach your own conclusion.
 </footer>
 
+<script src="claims.js"></script>
+
 <script>
-const buttons = [...document.querySelectorAll(".progress button")];
+const claimsContainer =
+  document.getElementById("claims");
 
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    const section = document.getElementById(button.dataset.go);
+const navigation =
+  document.getElementById("claimNavigation");
 
-    section.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+const claims =
+  Array.isArray(window.CLAIMS)
+    ? window.CLAIMS
+    : [];
+
+function createParagraph(text) {
+  const paragraph =
+    document.createElement("p");
+
+  paragraph.textContent = text;
+
+  return paragraph;
+}
+
+function createList(items, ordered) {
+  const list =
+    document.createElement(
+      ordered ? "ol" : "ul"
+    );
+
+  items.forEach(item => {
+    const listItem =
+      document.createElement("li");
+
+    listItem.textContent = item;
+    list.appendChild(listItem);
   });
-});
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
+  return list;
+}
 
-    buttons.forEach(button => {
-      button.classList.toggle(
-        "on",
-        button.dataset.go === entry.target.id
+function createSources(sources) {
+  const sourceList =
+    document.createElement("div");
+
+  sourceList.className = "source-list";
+
+  sources.forEach(source => {
+    const link =
+      document.createElement("a");
+
+    link.className = "source-link";
+    link.href = source.url;
+    link.target = "_blank";
+    link.rel = "noopener";
+
+    link.textContent =
+      source.label || source.url;
+
+    sourceList.appendChild(link);
+  });
+
+  return sourceList;
+}
+
+function renderSection(section, sectionIndex) {
+  const wrapper =
+    document.createElement("section");
+
+  wrapper.className =
+    "claim-section" +
+    (
+      section.kind === "evidence"
+        ? " evidence"
+        : ""
+    );
+
+  if (section.open || sectionIndex === 0) {
+    wrapper.classList.add("open");
+  }
+
+  const button =
+    document.createElement("button");
+
+  button.className = "claim-summary";
+  button.type = "button";
+
+  const label =
+    document.createElement("span");
+
+  label.className = "section-label";
+
+  label.textContent =
+    section.kind === "evidence"
+      ? "Evidence check"
+      : (
+          section.label ||
+          "Author’s argument"
+        );
+
+  const title =
+    document.createElement("span");
+
+  title.textContent =
+    section.title ||
+    "Read this section";
+
+  button.append(label,title);
+
+  button.setAttribute(
+    "aria-expanded",
+    String(wrapper.classList.contains("open"))
+  );
+
+  const content =
+    document.createElement("div");
+
+  content.className = "claim-content";
+
+  if (Array.isArray(section.paragraphs)) {
+    section.paragraphs.forEach(text => {
+      content.appendChild(
+        createParagraph(text)
       );
     });
-  });
-}, {
-  rootMargin:"-30% 0px -60%"
-});
+  }
 
-document.querySelectorAll(".claim").forEach(claim => {
-  observer.observe(claim);
-});
+  if (Array.isArray(section.bullets)) {
+    content.appendChild(
+      createList(section.bullets,false)
+    );
+  }
+
+  if (Array.isArray(section.numbered)) {
+    content.appendChild(
+      createList(section.numbered,true)
+    );
+  }
+
+  if (Array.isArray(section.sources)) {
+    content.appendChild(
+      createSources(section.sources)
+    );
+  }
+
+  button.addEventListener("click", () => {
+    const isOpen =
+      wrapper.classList.toggle("open");
+
+    button.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+  });
+
+  wrapper.append(button,content);
+
+  return wrapper;
+}
+
+function renderClaim(claim, index) {
+  const article =
+    document.createElement("article");
+
+  article.className = "claim";
+  article.id = "claim-" + (index + 1);
+
+  const number =
+    document.createElement("div");
+
+  number.className = "claim-number";
+
+  number.textContent =
+    "CLAIM " +
+    String(index + 1).padStart(2,"0") +
+    " / " +
+    String(claims.length).padStart(2,"0");
+
+  const title =
+    document.createElement("h2");
+
+  title.className = "claim-title";
+  title.textContent = claim.title;
+
+  const partyLine =
+    document.createElement("div");
+
+  partyLine.className = "party-line";
+
+  const partyLabel =
+    document.createElement("span");
+
+  partyLabel.className = "party-line-label";
+  partyLabel.textContent = "The familiar claim";
+
+  const partyText =
+    document.createElement("div");
+
+  partyText.textContent =
+    claim.partyLine || claim.title;
+
+  partyLine.append(
+    partyLabel,
+    partyText
+  );
+
+  const sections =
+    document.createElement("div");
+
+  sections.className = "claim-sections";
+
+  const claimSections =
+    Array.isArray(claim.sections)
+      ? claim.sections
+      : [];
+
+  claimSections.forEach((section, sectionIndex) => {
+    sections.appendChild(
+      renderSection(section,sectionIndex)
+    );
+  });
+
+  const expandRow =
+    document.createElement("div");
+
+  expandRow.className = "expand-row";
+
+  const expandButton =
+    document.createElement("button");
+
+  expandButton.className = "expand-button";
+  expandButton.type = "button";
+  expandButton.textContent = "Open all sections";
+
+  let allOpen = false;
+
+  expandButton.addEventListener("click", () => {
+    allOpen = !allOpen;
+
+    article
+      .querySelectorAll(".claim-section")
+      .forEach(section => {
+        section.classList.toggle(
+          "open",
+          allOpen
+        );
+
+        const sectionButton =
+          section.querySelector(
+            ".claim-summary"
+          );
+
+        sectionButton.setAttribute(
+          "aria-expanded",
+          String(allOpen)
+        );
+      });
+
+    expandButton.textContent =
+      allOpen
+        ? "Close all sections"
+        : "Open all sections";
+  });
+
+  expandRow.appendChild(expandButton);
+
+  article.append(
+    number,
+    title,
+    partyLine,
+    sections,
+    expandRow
+  );
+
+  return article;
+}
+
+function renderNavigation() {
+  claims.forEach((claim,index) => {
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+    button.textContent = index + 1;
+    button.dataset.target =
+      "claim-" + (index + 1);
+
+    button.setAttribute(
+      "aria-label",
+      "Go to claim " + (index + 1)
+    );
+
+    if (index === 0) {
+      button.classList.add("active");
+    }
+
+    button.addEventListener("click", () => {
+      document
+        .getElementById(button.dataset.target)
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+    });
+
+    navigation.appendChild(button);
+  });
+}
+
+function observeClaims() {
+  const buttons = [
+    ...navigation.querySelectorAll("button")
+  ];
+
+  const observer =
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        buttons.forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.target ===
+              entry.target.id
+          );
+        });
+      });
+    },{
+      rootMargin:"-35% 0px -55%"
+    });
+
+  document
+    .querySelectorAll(".claim")
+    .forEach(claim => {
+      observer.observe(claim);
+    });
+}
+
+function initialize() {
+  claimsContainer.replaceChildren();
+
+  if (!claims.length) {
+    const error =
+      document.createElement("div");
+
+    error.className = "empty";
+
+    error.innerHTML =
+      "<strong>The claim content did not load.</strong><br>" +
+      "Confirm that <code>claims.js</code> is in the same " +
+      "repository folder as <code>index.html</code>.";
+
+    claimsContainer.appendChild(error);
+    return;
+  }
+
+  renderNavigation();
+
+  claims.forEach((claim,index) => {
+    claimsContainer.appendChild(
+      renderClaim(claim,index)
+    );
+  });
+
+  observeClaims();
+}
+
+initialize();
 </script>
 
 </body>
